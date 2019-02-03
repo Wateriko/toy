@@ -15,4 +15,12 @@ refine$product_code <- gsub("v","TV",refine$product_code)
 refine$product_code <- gsub("x","Laptop",refine$product_code)
 refine$product_code <- gsub("q","Tablet",refine$product_code)
 
+refine$full_address <- paste(refine$address,refine$city,re#fine$country, sep=",")
+library(dummies)
+refine <- cbind(refine,dummy(refine$company,sep = "_"))
+names(refine) <- gsub(x = names(refine), pattern = "refine", replacement = "company")
+
+refine <- cbind(refine,dummy(refine$product_code,sep = "_"))
+names(refine) <- gsub(x = names(refine), pattern = "refine", replacement = "product")
+
 
